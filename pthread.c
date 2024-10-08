@@ -27,10 +27,10 @@ void *child(void *arg) {
 int main() {
     clock_t start_time = clock();
 
-    pthread_t threads[10];  // 定義 10 個執行緒
+    pthread_t threads[10];  //宣告10個執行緒陣列
     pthread_mutex_init(&mutex, NULL);  // 初始化互斥鎖
 
-    // 創建 10 個子執行緒
+    //創建10個執行child函數的執行緒
     for (int i = 0; i < 10; i++) {
         pthread_create(&threads[i], NULL, child, NULL);
     }

@@ -22,14 +22,17 @@ void *child(void *arg) {
 int main() {
     clock_t start_time = clock();
 
-    pthread_t threads[10];
+    
+    pthread_t threads[10]; //宣告10個執行緒陣列
+
+    //創建10個執行child函數的執行緒
     for (int i = 0; i < 10; i++) {
         pthread_create(&threads[i], NULL, child, NULL);
     }
 
     flag = true; //開啟旗標
 
-    
+    // 等待所有執行緒完成
     for (int i = 0; i < 10; i++) {
         pthread_join(threads[i], NULL);
     }
