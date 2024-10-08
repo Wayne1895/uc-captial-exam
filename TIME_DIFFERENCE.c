@@ -6,7 +6,7 @@ int TimeToSecond(int time) {
     int mins = (time % 10000) / 100; //取得分鐘
     int secs = time % 100;  //取得秒
 
-    return hours * 3600 + mins * 60 + secs;  //回傳轉換後的總秒數
+    return hours * 3600 + mins * 60 + secs;  //總秒數
 }
 
 int main() {

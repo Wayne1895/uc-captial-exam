@@ -38,7 +38,7 @@ int main() {
     pthread_mutex_destroy(&mutex);
 
     printf("按任意鍵結束程式...\n");
-    getchar(); // 等待使用者按下任意鍵後才結束
+    getchar();
 
 
     return 0;
