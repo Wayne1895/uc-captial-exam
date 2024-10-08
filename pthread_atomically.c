@@ -1,18 +1,13 @@
 #include <stdio.h>
 #include <pthread.h>
+#include <stdatomic.h>
 
 long long global_var = 0; 
-pthread_mutex_t mutex;  // 定義互斥鎖
 
 // child 每個執行 1000萬次
 void *child(void *arg) {
     for (long long i = 0; i < 10000000; i++) {
-        // 互斥鎖上鎖
-        pthread_mutex_lock(&mutex);
-
-        global_var++;
-        // 解鎖
-        pthread_mutex_unlock(&mutex);
+       atomic_fetch_add(&global_var, 1);
         
     }
     pthread_exit(NULL);
@@ -20,7 +15,6 @@ void *child(void *arg) {
 
 int main() {
     pthread_t threads[10];  // 定義 10 個執行緒
-    pthread_mutex_init(&mutex, NULL);  // 初始化互斥鎖
 
     // 創建 10 個子執行緒
     for (int i = 0; i < 10; i++) {
@@ -33,9 +27,6 @@ int main() {
     }
 
     printf("Global variable value: %lld\n", global_var);
-
-    // 銷毀互斥鎖
-    pthread_mutex_destroy(&mutex);
 
     printf("按任意鍵結束程式...\n");
     getchar(); // 等待使用者按下任意鍵後才結束

@@ -3,4 +3,5 @@
 phread.exe
 TIME_DIFFERENCE.exe
 .vscode
+pthread_atomically.exe
 
