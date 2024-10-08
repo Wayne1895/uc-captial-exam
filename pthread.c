@@ -7,12 +7,12 @@ pthread_mutex_t mutex;  // 定義互斥鎖
 // child 每個執行 1000萬次
 void *child(void *arg) {
     for (long long i = 0; i < 10000000; i++) {
-        // 互斥鎖上鎖
-        pthread_mutex_lock(&mutex);
+        
+        pthread_mutex_lock(&mutex);// 互斥鎖上鎖
 
         global_var++;
-        // 解鎖
-        pthread_mutex_unlock(&mutex);
+        
+        pthread_mutex_unlock(&mutex);// 解鎖
         
     }
     pthread_exit(NULL);
@@ -34,8 +34,8 @@ int main() {
 
     printf("Global variable value: %lld\n", global_var);
 
-    // 銷毀互斥鎖
-    pthread_mutex_destroy(&mutex);
+    
+    pthread_mutex_destroy(&mutex);// 銷毀互斥鎖
 
     printf("按任意鍵結束程式...\n");
     getchar();
